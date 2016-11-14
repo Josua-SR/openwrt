@@ -68,6 +68,13 @@ ifeq ($(strip $(CONFIG_EXTERNAL_KERNEL_TREE)),"")
   else
     define Kernel/Prepare/Default
 	git clone $(KERNEL_GIT_OPTS) $(CONFIG_KERNEL_GIT_CLONE_URI) $(LINUX_DIR)
+	
+	# patch in switch configuration api
+	install -v -m644 $(GENERIC_FILES_DIR)/include/uapi/linux/switch.h $(LINUX_DIR)/include/uapi/linux/
+	install -v -m644 $(GENERIC_FILES_DIR)/include/linux/switch.h $(LINUX_DIR)/include/linux/
+	install -v -m644 $(GENERIC_FILES_DIR)/drivers/net/phy/swconfig.c $(LINUX_DIR)/drivers/net/phy/
+	install -v -m644 $(GENERIC_FILES_DIR)/drivers/net/phy/swconfig_leds.c $(LINUX_DIR)/drivers/net/phy/
+	patch -d $(LINUX_DIR) -p1 -i $(TOPDIR)/target/linux/generic/patches-4.4/700-swconfig.patch
     endef
   endif
 else

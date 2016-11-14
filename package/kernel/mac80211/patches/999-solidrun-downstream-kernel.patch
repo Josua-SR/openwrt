@@ -1,0 +1,40 @@
+diff -Naur compat-wireless-2016-10-08.orig/backport-include/linux/phy.h compat-wireless-2016-10-08/backport-include/linux/phy.h
+--- compat-wireless-2016-10-08.orig/backport-include/linux/phy.h	2016-10-08 13:44:53.000000000 +0200
++++ compat-wireless-2016-10-08/backport-include/linux/phy.h	2016-11-14 17:34:37.343347645 +0100
+@@ -9,7 +9,7 @@
+ 	phy_connect(dev, bus_id, handler, 0, interface)
+ #endif
+ 
+-#if (LINUX_VERSION_CODE < KERNEL_VERSION(4,5,0))
++#if (LINUX_VERSION_CODE < KERNEL_VERSION(4,4,28))
+ #define phydev_name LINUX_BACKPORT(phydev_name)
+ static inline const char *phydev_name(const struct phy_device *phydev)
+ {
+@@ -58,7 +58,7 @@
+ #define mdiobus_unregister LINUX_BACKPORT(mdiobus_unregister)
+ #endif /* < 4.5 */
+ 
+-#if (LINUX_VERSION_CODE < KERNEL_VERSION(4,5,0))
++#if (LINUX_VERSION_CODE < KERNEL_VERSION(4,4,28))
+ #define phydev_get_addr LINUX_BACKPORT(phydev_get_addr)
+ static inline int phydev_get_addr(struct phy_device *phydev)
+ {
+diff -Naur compat-wireless-2016-10-08.orig/compat/backport-4.5.c compat-wireless-2016-10-08/compat/backport-4.5.c
+--- compat-wireless-2016-10-08.orig/compat/backport-4.5.c	2016-10-08 13:44:53.000000000 +0200
++++ compat-wireless-2016-10-08/compat/backport-4.5.c	2016-11-14 19:05:54.707204242 +0100
+@@ -97,6 +97,7 @@
+ }
+ EXPORT_SYMBOL_GPL(memdup_user_nul);
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4,4,28)
+ void phy_attached_info(struct phy_device *phydev)
+ {
+ 	phy_attached_print(phydev, NULL);
+@@ -123,6 +124,7 @@
+ 	}
+ }
+ EXPORT_SYMBOL_GPL(phy_attached_print);
++#endif
+ 
+ static void devm_led_trigger_release(struct device *dev, void *res)
+ {

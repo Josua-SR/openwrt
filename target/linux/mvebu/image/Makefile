@@ -52,7 +52,8 @@ define Build/sdcard-img
 	./gen_mvebu_sdcard_img.sh $@ \
 		"$(BIN_DIR)/u-boot.mmc" \
 		c 32768 $@.boot \
-		83 $$ROOTFS_SIZE $(IMAGE_ROOTFS)
+		83 1308672 $(IMAGE_ROOTFS) \
+		83 6401024 /dev/null
 endef
 
 define Device/Default

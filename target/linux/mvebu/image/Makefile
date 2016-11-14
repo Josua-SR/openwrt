@@ -42,7 +42,7 @@ endef
 define Build/boot-img
 	rm -f $@.boot
 	mkfs.fat -C $@.boot 16384
-	$(foreach dts,$(DEVICE_DTS), mcopy -i $@.boot $(DTS_DIR)/$(dts).dtb ::$(dts).dtb)
+	$(foreach dts,$(DEVICE_DTS), mcopy -i $@.boot $(DTS_DIR)/$(dts).dtb ::$(dts).dtb;)
 	mcopy -i $@.boot $(IMAGE_KERNEL) ::zImage
 	mcopy -i $@.boot $@.bootscript ::boot.scr
 endef
@@ -182,10 +182,11 @@ TARGET_DEVICES += armada-388-rd
 
 define Device/armada-388-clearfog
   KERNEL_INSTALL := 1
-  KERNEL := dtb | kernel-bin
+  KERNEL := kernel-bin
   DEVICE_TITLE := SolidRun ClearFog
+  DEVICE_DTS := armada-388-clearfog-pro armada-388-clearfog-base
   DEVICE_PACKAGES := mkf2fs e2fsprogs swconfig kmod-fs-vfat kmod-nls-cp437 kmod-nls-iso8859-1 uboot-solidrun-clearfog
-  IMAGES := bundle.tar.gz sdcard.img.gz
+  IMAGES := sdcard.img.gz
   IMAGE/bundle.tar.gz := clearfog-bundle
   IMAGE/sdcard.img.gz := boot-scr | boot-img | sdcard-img | gzip
   IMAGE_NAME = $$(IMAGE_PREFIX)-$$(2)

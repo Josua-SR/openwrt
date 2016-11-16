@@ -127,12 +127,12 @@ define Device/linksys-wrt3200acm
 endef
 TARGET_DEVICES += linksys-wrt3200acm
 
-define Device/linksys-wrt1900acs
-  $(call Device/linksys,WRT1900ACS (Shelby))
-  $(Device/armada-385-linksys)
-  DEVICE_DTS := armada-385-linksys-shelby
-endef
-TARGET_DEVICES += linksys-wrt1900acs
+#define Device/linksys-wrt1900acs
+#  $(call Device/linksys,WRT1900ACS (Shelby))
+#  $(Device/armada-385-linksys)
+#  DEVICE_DTS := armada-385-linksys-shelby
+#endef
+#TARGET_DEVICES += linksys-wrt1900acs
 
 define Device/linksys-wrt1900ac
   $(call Device/linksys,WRT1900AC (Mamba))

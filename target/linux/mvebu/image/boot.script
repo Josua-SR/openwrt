@@ -1,3 +1,10 @@
+# save initial environment for persistent mac addresses
+if test "${sr_firstboot}" != "done"; then
+	# save initial environment
+	setenv sr_firstboot done
+	saveenv
+fi
+
 setenv bootargs console=ttyS0,115200n8 ath10k_core.cryptmode=1 root=/dev/mmcblk0p2 rootfstype=squashfs rootwait overlay=/dev/mmcblk0p3
 setenv fdt_high 0x07a12000
 

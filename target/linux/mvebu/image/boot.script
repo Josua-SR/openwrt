@@ -1,4 +1,4 @@
-setenv bootargs console=ttyS0,115200n8 root=/dev/mmcblk0p2 rootfstype=squashfs rootwait overlay=/dev/mmcblk0p3
+setenv bootargs console=ttyS0,115200n8 ath10k_core.cryptmode=1 root=/dev/mmcblk0p2 rootfstype=squashfs rootwait overlay=/dev/mmcblk0p3
 setenv fdt_high 0x07a12000
 
 fatload mmc 0:1 0x02000000 zImage

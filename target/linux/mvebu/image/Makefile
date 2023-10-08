@@ -123,7 +123,7 @@ endef
 define Build/emmc-img
 	SIGNATURE="$(IMG_PART_SIGNATURE)" \
 	./gen_mvebu_emmc_img.sh $@ \
-		$(if $(UBOOT_EMMC),$(STAGING_DIR_IMAGE)/$(UBOOT)) \
+		$(if $(UBOOT_EMMC),$(STAGING_DIR_IMAGE)/$(UBOOT_EMMC)) \
 		c $(CONFIG_TARGET_KERNEL_PARTSIZE) $@.boot \
 		83 $(CONFIG_TARGET_ROOTFS_PARTSIZE) $(IMAGE_ROOTFS)
 endef
@@ -131,7 +131,7 @@ endef
 define Build/emmc-img-ext4
 	SIGNATURE="$(IMG_PART_SIGNATURE)" \
 	./gen_mvebu_emmc_img.sh $@ \
-		$(if $(UBOOT_EMMC),$(STAGING_DIR_IMAGE)/$(UBOOT)) \
+		$(if $(UBOOT_EMMC),$(STAGING_DIR_IMAGE)/$(UBOOT_EMMC)) \
 		83 $(CONFIG_TARGET_KERNEL_PARTSIZE) $@.bootimg \
 		83 $(CONFIG_TARGET_ROOTFS_PARTSIZE) $(IMAGE_ROOTFS)
 endef

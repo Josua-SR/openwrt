@@ -1,0 +1,52 @@
+From cba0e10cac1bd3659bcbb0e8198a599257466f6d Mon Sep 17 00:00:00 2001
+From: Josua Mayer <josua@solid-run.com>
+Date: Fri, 22 Dec 2023 23:10:51 +0100
+Subject: [PATCH 1/5] arm: dts: marvell: clearfog-gtr: add board-specific
+ compatible strings
+
+Most arm board have a board-specific compatible string that allows e.g.
+userspace to match specific firmware variants or apply specific
+policies.
+
+Add board-specific properties to both variants of the Clearfog GTR:
+- solidrun,clearfog-gtr-l8
+- solidrun,clearfog-gtr-s4
+
+Introduction of a common parent (e.g. "solidrun,clearfog-gtr") is
+omitted for brevity.
+Since announcement of the two products no additional variants were added
+it is assumed that there will always be just two.
+
+Signed-off-by: Josua Mayer <josua@solid-run.com>
+---
+ arch/arm/boot/dts/armada-385-clearfog-gtr-l8.dts | 1 +
+ arch/arm/boot/dts/armada-385-clearfog-gtr-s4.dts | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/arch/arm/boot/dts/armada-385-clearfog-gtr-l8.dts b/arch/arm/boot/dts/armada-385-clearfog-gtr-l8.dts
+index c9ac630e5874..87af184ab9a0 100644
+--- a/arch/arm/boot/dts/armada-385-clearfog-gtr-l8.dts
++++ b/arch/arm/boot/dts/armada-385-clearfog-gtr-l8.dts
+@@ -4,6 +4,7 @@
+ 
+ / {
+ 	model = "SolidRun Clearfog GTR L8";
++	compatible = "solidrun,clearfog-gtr-l8", "marvell,armada385", "marvell,armada380";
+ };
+ 
+ &mdio {
+diff --git a/arch/arm/boot/dts/armada-385-clearfog-gtr-s4.dts b/arch/arm/boot/dts/armada-385-clearfog-gtr-s4.dts
+index fa653b379490..9212cdede3e1 100644
+--- a/arch/arm/boot/dts/armada-385-clearfog-gtr-s4.dts
++++ b/arch/arm/boot/dts/armada-385-clearfog-gtr-s4.dts
+@@ -4,6 +4,7 @@
+ 
+ / {
+ 	model = "SolidRun Clearfog GTR S4";
++	compatible = "solidrun,clearfog-gtr-s4", "marvell,armada385", "marvell,armada380";
+ };
+ 
+ &sfp0 {
+-- 
+2.35.3
+

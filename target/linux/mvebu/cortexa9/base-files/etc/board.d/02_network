@@ -44,6 +44,21 @@ mvebu_setup_interfaces()
 		# eth2 is SFP
 		ucidef_set_interfaces_lan_wan "eth1" "eth0 eth2"
 		;;
+	solidrun,clearfog-gtr-l8)
+		# eth0 is standalone ethernet labeled "WAN"
+		# eth1 is ethernet switch cpu port
+		# lan1 to lan8 are ethernet switch ports labeled "LAN"
+		# unsupported sfp port labeled "LAN" on ethernet switch port 9
+		# eth2 is SFP connector labeled "WAN"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4 lan5 lan6 lan7 lan8 lan-sfp" "eth0 eth2"
+		;;
+	solidrun,clearfog-gtr-s4)
+		# eth0 is standalone ethernet labeled "WAN"
+		# eth1 is ethernet switch cpu port
+		# lan1 to lan4 are ethernet switch ports labeled "LAN"
+		# eth2 is SFP connector labeled "WAN"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" "eth0 eth2"
+		;;
 	solidrun,clearfog-pro-a1)
 		# eth0 is standalone ethernet
 		# eth1 is switch

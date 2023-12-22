@@ -331,6 +331,38 @@ define Device/solidrun_clearfog-base-a1
 endef
 TARGET_DEVICES += solidrun_clearfog-base-a1
 
+define Device/solidrun_clearfog-gtr-l8
+  $(Device/dsa-migration)
+  DEVICE_VENDOR := SolidRun
+  DEVICE_MODEL := ClearFog GTR L8
+  KERNEL_INSTALL := 1
+  KERNEL := kernel-bin
+  DEVICE_PACKAGES := mkf2fs e2fsprogs partx-utils
+  IMAGES := emmc.img.gz
+  IMAGE/emmc.img.gz := boot-scr | boot-img-ext4 | emmc-img-ext4 | gzip | append-metadata
+  DEVICE_DTS := armada-385-clearfog-gtr-l8
+  UBOOT_EMMC := clearfog-emmc-u-boot-with-spl.kwb
+  BOOT_SCRIPT := clearfog
+  SUPPORTED_DEVICES += armada-385-clearfog-gtr-l8
+endef
+TARGET_DEVICES += solidrun_clearfog-gtr-l8
+
+define Device/solidrun_clearfog-gtr-s4
+  $(Device/dsa-migration)
+  DEVICE_VENDOR := SolidRun
+  DEVICE_MODEL := ClearFog GTR S4
+  KERNEL_INSTALL := 1
+  KERNEL := kernel-bin
+  DEVICE_PACKAGES := mkf2fs e2fsprogs partx-utils
+  IMAGES := emmc.img.gz
+  IMAGE/emmc.img.gz := boot-scr | boot-img-ext4 | emmc-img-ext4 | gzip | append-metadata
+  DEVICE_DTS := armada-385-clearfog-gtr-s4
+  UBOOT_EMMC := clearfog-emmc-u-boot-with-spl.kwb
+  BOOT_SCRIPT := clearfog
+  SUPPORTED_DEVICES += armada-385-clearfog-gtr-s4
+endef
+TARGET_DEVICES += solidrun_clearfog-gtr-s4
+
 define Device/solidrun_clearfog-pro-a1
   $(Device/dsa-migration)
   DEVICE_VENDOR := SolidRun

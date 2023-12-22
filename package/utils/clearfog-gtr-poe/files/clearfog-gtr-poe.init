@@ -1,0 +1,16 @@
+#!/bin/sh /etc/rc.common
+#
+# Copyright 2023 Josua Mayer <josua@solid-run.com>
+#
+
+START=99
+
+start() {
+	# only execute on Clearfog GTR
+	test="$(grep "^SolidRun Clearfog GTR.*$" /proc/device-tree/model)"
+	[ -z "$test" ] && return 0
+
+	echo "Configuring PoE Controller ..."
+	/usr/sbin/tps2388-init
+	return $?
+}

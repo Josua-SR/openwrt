@@ -14,6 +14,8 @@ platform_check_image() {
 	cznic,turris-omnia|\
 	kobol,helios4|\
 	solidrun,clearfog-base-a1|\
+	solidrun,clearfog-gtr-l8|\
+	solidrun,clearfog-gtr-s4|\
 	solidrun,clearfog-pro-a1)
 		legacy_sdcard_check_image "$1"
 		;;
@@ -49,6 +51,8 @@ platform_do_upgrade() {
 	cznic,turris-omnia|\
 	kobol,helios4|\
 	solidrun,clearfog-base-a1|\
+	solidrun,clearfog-gtr-l8|\
+	solidrun,clearfog-gtr-s4|\
 	solidrun,clearfog-pro-a1)
 		legacy_sdcard_do_upgrade "$1"
 		;;
@@ -73,6 +77,8 @@ platform_copy_config() {
 	cznic,turris-omnia|\
 	kobol,helios4|\
 	solidrun,clearfog-base-a1|\
+	solidrun,clearfog-gtr-l8|\
+	solidrun,clearfog-gtr-s4|\
 	solidrun,clearfog-pro-a1)
 		legacy_sdcard_copy_config
 		;;

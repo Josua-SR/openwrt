@@ -1,0 +1,93 @@
+From 5c7ffb17648c7009fce60172cc4cc2eb2ffaae03 Mon Sep 17 00:00:00 2001
+From: Josua Mayer <josua@solid-run.com>
+Date: Sat, 23 Dec 2023 16:00:11 +0100
+Subject: [PATCH 2/5] arm: dts: marvell: clearfog-gtr: sort pinctrl nodes
+ alphabetically
+
+Cosmetic change to to allow future patches adding pinctrl nodes at the
+correct place alphabetically.
+
+Signed-off-by: Josua Mayer <josua@solid-run.com>
+---
+ .../arm/boot/dts/armada-385-clearfog-gtr.dtsi | 40 +++++++++----------
+ 1 file changed, 20 insertions(+), 20 deletions(-)
+
+diff --git a/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi b/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi
+index 624bbcae68c0..7e5afcb9e53b 100644
+--- a/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi
++++ b/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi
+@@ -141,18 +141,13 @@ i2c@11100 { /* SFP (CON5/CON6) */
+ 			};
+ 
+ 			pinctrl@18000 {
+-				cf_gtr_switch_reset_pins: cf-gtr-switch-reset-pins {
+-					marvell,pins = "mpp18";
+-					marvell,function = "gpio";
+-				};
+-
+-				cf_gtr_usb3_con_vbus: cf-gtr-usb3-con-vbus {
+-					marvell,pins = "mpp22";
++				cf_gtr_fan_pwm: cf-gtr-fan-pwm {
++					marvell,pins = "mpp23";
+ 					marvell,function = "gpio";
+ 				};
+ 
+-				cf_gtr_fan_pwm: cf-gtr-fan-pwm {
+-					marvell,pins = "mpp23";
++				cf_gtr_front_button_pins: cf-gtr-front-button-pins {
++					marvell,pins = "mpp53";
+ 					marvell,function = "gpio";
+ 				};
+ 
+@@ -162,13 +157,6 @@ cf_gtr_i2c1_pins: i2c1-pins {
+ 					marvell,function = "i2c1";
+ 				};
+ 
+-				cf_gtr_sdhci_pins: cf-gtr-sdhci-pins {
+-					marvell,pins = "mpp21", "mpp28",
+-						       "mpp37", "mpp38",
+-						       "mpp39", "mpp40";
+-					marvell,function = "sd0";
+-				};
+-
+ 				cf_gtr_isolation_pins: cf-gtr-isolation-pins {
+ 					marvell,pins = "mpp47";
+ 					marvell,function = "gpio";
+@@ -179,18 +167,30 @@ cf_gtr_poe_reset_pins: cf-gtr-poe-reset-pins {
+ 					marvell,function = "gpio";
+ 				};
+ 
++				cf_gtr_rear_button_pins: cf-gtr-rear-button-pins {
++					marvell,pins = "mpp36";
++					marvell,function = "gpio";
++				};
++
++				cf_gtr_sdhci_pins: cf-gtr-sdhci-pins {
++					marvell,pins = "mpp21", "mpp28",
++						       "mpp37", "mpp38",
++						       "mpp39", "mpp40";
++					marvell,function = "sd0";
++				};
++
+ 				cf_gtr_spi1_cs_pins: spi1-cs-pins {
+ 					marvell,pins = "mpp59";
+ 					marvell,function = "spi1";
+ 				};
+ 
+-				cf_gtr_front_button_pins: cf-gtr-front-button-pins {
+-					marvell,pins = "mpp53";
++				cf_gtr_switch_reset_pins: cf-gtr-switch-reset-pins {
++					marvell,pins = "mpp18";
+ 					marvell,function = "gpio";
+ 				};
+ 
+-				cf_gtr_rear_button_pins: cf-gtr-rear-button-pins {
+-					marvell,pins = "mpp36";
++				cf_gtr_usb3_con_vbus: cf-gtr-usb3-con-vbus {
++					marvell,pins = "mpp22";
+ 					marvell,function = "gpio";
+ 				};
+ 			};
+-- 
+2.35.3
+

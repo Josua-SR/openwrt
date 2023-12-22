@@ -1,0 +1,80 @@
+From b96642598906a4de21d976d2d7523ce4d8a8b715 Mon Sep 17 00:00:00 2001
+From: Josua Mayer <josua@solid-run.com>
+Date: Sat, 23 Dec 2023 15:15:22 +0100
+Subject: [PATCH 4/5] arm: dts: marvell: clearfog-gtr-l8: add support for
+ second sfp connector
+
+Clearfog GTR L8 has an extra SFP connector on the managed switch port 9.
+Add descriptions for both entities along with pinctrl.
+
+Signed-off-by: Josua Mayer <josua@solid-run.com>
+---
+ .../boot/dts/armada-385-clearfog-gtr-l8.dts    | 18 ++++++++++++++++++
+ arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi |  8 +++++++-
+ 2 files changed, 25 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/armada-385-clearfog-gtr-l8.dts b/arch/arm/boot/dts/armada-385-clearfog-gtr-l8.dts
+index 87af184ab9a0..dde64471ad69 100644
+--- a/arch/arm/boot/dts/armada-385-clearfog-gtr-l8.dts
++++ b/arch/arm/boot/dts/armada-385-clearfog-gtr-l8.dts
+@@ -5,6 +5,16 @@
+ / {
+ 	model = "SolidRun Clearfog GTR L8";
+ 	compatible = "solidrun,clearfog-gtr-l8", "marvell,armada385", "marvell,armada380";
++
++	/* CON25 */
++	sfp1: sfp-1 {
++		compatible = "sff,sfp";
++		pinctrl-0 = <&cf_gtr_sfp1_pins>;
++		pinctrl-names = "default";
++		i2c-bus = <&i2c0>;
++		mod-def0-gpio = <&gpio0 24 GPIO_ACTIVE_LOW>;
++		tx-disable-gpio = <&gpio1 23 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &mdio {
+@@ -67,6 +77,14 @@ port@8 {
+ 				phy-handle = <&switch0phy7>;
+ 			};
+ 
++			port@9 {
++				reg = <9>;
++				label = "lan-sfp";
++				phy-mode = "sgmii";
++				sfp = <&sfp1>;
++				managed = "in-band-status";
++			};
++
+ 			port@10 {
+ 				reg = <10>;
+ 				label = "cpu";
+diff --git a/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi b/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi
+index f9880afca281..4b1ea71f318c 100644
+--- a/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi
++++ b/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi
+@@ -201,6 +201,12 @@ cf_gtr_sfp0_pins: sfp0-pins {
+ 					marvell,function = "gpio";
+ 				};
+ 
++				cf_gtr_sfp1_pins: sfp1-pins {
++					/* sfp modabs, txdisable */
++					marvell,pins = "mpp24", "mpp54";
++					marvell,function = "gpio";
++				};
++
+ 				cf_gtr_spi1_cs_pins: spi1-cs-pins {
+ 					marvell,pins = "mpp59";
+ 					marvell,function = "spi1";
+@@ -273,7 +279,7 @@ pcie@3,0 {
+ 	};
+ 
+ 	/* CON5 */
+-	sfp0: sfp {
++	sfp0: sfp-0 {
+ 		compatible = "sff,sfp";
+ 		pinctrl-0 = <&cf_gtr_sfp0_pins>;
+ 		pinctrl-names = "default";
+-- 
+2.35.3
+
